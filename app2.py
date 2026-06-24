@@ -90,19 +90,19 @@ st.markdown("---")
 st.subheader("📊 Database statistics")
 col3,col4,col5=st.columns(3)
 with col3:
-    st.markdown("Variants by impact")
+    st.markdown("<div class='stats-card'>🔬Variants by impact</div>",unsafe_allow_html=True)
     impact_data=db.get_impact_stats()
     if impact_data:
         df_impact=pd.DataFrame(impact_data,columns=["classification",'Count'])
         st.dataframe(df_impact,use_container_width=True)
 with col4:
-    st.markdown("Benign vs Pathogenic")
+    st.markdown("<div class='stats-card>🧪Benign vs Pathogenic</div>",unsafe_allow_html=True)
     class_data=db.get_classification_stats()
     if class_data:
         df_class=pd.DataFrame(class_data,columns=['classification','Count'])
         st.dataframe(df_class,use_container_width=True)
 with col5:
-    st.markdown("Top chromosomes")
+    st.markdown("<div class='stats-card'>🧬 Top chromosomes</div>",unsafe_allow_html=True)
     chrom_data=db.get_chromosome_stats()
     if chrom_data:
         df_chrom=pd.DataFrame(chrom_data,columns=['Chromosome','Variant count'])
