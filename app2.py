@@ -29,11 +29,24 @@ h1 {background:linear-gradient(90deg,#1e3a8a,#0891b2,#0d9488);
     font-weight:600;
     border:none;
 }
+thead tr th{
+            background-color:#1e3a8a !important;
+            color:white !important;
+            font-weight :700 !important;
+            }
+tbody tr:nth-child(even){
+            background-color: #ecfeff;
+            }
+tbody tr:nth-child(odd){
+            background-color:#eff6ff;}
+.stats-section {
+    background: linear-gradient(135deg, #eff6ff, #ecfeff);
+    border: 2px solid #0891b2;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
 
-div[data-testid="metric-container"] {
-    border: 1px solid #0891b2;
-    padding: 10px;
-    border-radius: 10px;
 .stats-header {
     background: linear-gradient(90deg, #1e3a8a, #0891b2, #0d9488);
     color: white;
@@ -42,18 +55,19 @@ div[data-testid="metric-container"] {
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 15px;
+    text-align: center;
 }
 
-/* Stats dataframe containers */
-.stats-card {
-    background: linear-gradient(135deg, #eff6ff, #ecfeff);
-    border: 1px solid #0891b2;
-    border-left: 4px solid #0d9488;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-
+.stats-label {
+    background: linear-gradient(90deg, #0891b2, #0d9488);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
 }
+            
 </style>
 """, unsafe_allow_html=True)
 db=DBHelper()
@@ -94,16 +108,27 @@ with col3:
     impact_data=db.get_impact_stats()
     if impact_data:
         df_impact=pd.DataFrame(impact_data,columns=["classification",'Count'])
-        st.dataframe(df_impact,use_container_width=True)
+        st.dataframe(df_impact,use_container_width=True,
+                     column_config={'Impact':st.column_config.TextColumn("🔬 Impact"),
+                                    "Count":st.column_config.NumberColumn("Count",format="%d")
+                                    })
 with col4:
     st.markdown("<div class='stats-card>🧪Benign vs Pathogenic</div>",unsafe_allow_html=True)
     class_data=db.get_classification_stats()
     if class_data:
         df_class=pd.DataFrame(class_data,columns=['classification','Count'])
-        st.dataframe(df_class,use_container_width=True)
+        st.dataframe(df_class,use_container_width=True,
+                      column_config={
+                "Classification": st.column_config.TextColumn("🧪 Classification"),
+                "Count": st.column_config.NumberColumn("Count", format="%d")
+            })
 with col5:
     st.markdown("<div class='stats-card'>🧬 Top chromosomes</div>",unsafe_allow_html=True)
     chrom_data=db.get_chromosome_stats()
     if chrom_data:
         df_chrom=pd.DataFrame(chrom_data,columns=['Chromosome','Variant count'])
-        st.dataframe(df_chrom.head(10),use_container_width=True)
+        st.dataframe(df_chrom.head(10),use_container_width=True,
+                     column_config={
+                "Chromosome": st.column_config.TextColumn("🧬 Chromosome"),
+                "Variant Count": st.column_config.NumberColumn("Variants", format="%d")
+            })
