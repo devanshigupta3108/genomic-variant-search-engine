@@ -2,32 +2,57 @@ import streamlit as st
 import pandas as pd
 from sql import DBHelper
 st.set_page_config(
-    page_title='GENOMIC VARIANT SEARCH ENGINE',
+    page_title='🧬VarSearch-Human Genetic Variant Explorer',
     page_icon="🧬",
     layout='wide'
 )
 st.markdown("""
 <style>
 .main {
-    background-color: #f5f7fa;
+    background-color: #f0f4f8;
 }
 
-h1 {
-    color: #1e3a8a;
-    text-align: center;
+h1 {background:linear-gradient(90deg,#1e3a8a,#0891b2,#0d9488);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+            font-size:2.5rem;
+            font-weight:800;
+            text-align: center;
 }
 
 .stButton > button {
-    background-color: #2563eb;
+    background:linear-gradient(90deg,#1e3a8a,#0891b2);
     color: white;
     border-radius: 10px;
     width: 100%;
+    font-weight:600;
+    border:none;
 }
 
 div[data-testid="metric-container"] {
-    border: 1px solid #ddd;
+    border: 1px solid #0891b2;
     padding: 10px;
     border-radius: 10px;
+.stats-header {
+    background: linear-gradient(90deg, #1e3a8a, #0891b2, #0d9488);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Stats dataframe containers */
+.stats-card {
+    background: linear-gradient(135deg, #eff6ff, #ecfeff);
+    border: 1px solid #0891b2;
+    border-left: 4px solid #0d9488;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+
 }
 </style>
 """, unsafe_allow_html=True)
