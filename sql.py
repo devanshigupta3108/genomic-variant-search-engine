@@ -12,7 +12,15 @@ class DBHelper:
             )
           self.cursor=self.conn.cursor()
         except Exception as e:
-            print(f"Connection error:{e}")
+            st.error(f"Connection error:{e}")
+            self.conn=None
+            self.cursor=None
+    def get_cursor(self):
+          try:
+                self.conn.ping(reconnect=True)
+                return self.conn.cursor()
+          except:
+                return None
     def search_by_gene(self,gene_name):
             self.cursor.execute("""
                                 SELECT g.symbol,v.disease_name,v.variant_type,v.consequence,v.impact,v.classification
