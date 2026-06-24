@@ -60,6 +60,7 @@ with col2:
                 st.dataframe(df,use_container_width=True)
             else:
                 st.warning(f"No variants found for'{disease_query}'")
+db=DBHelper()
 st.markdown("---")
 st.subheader("📊 Database statistics")
 col3,col4,col5=st.columns(3)
