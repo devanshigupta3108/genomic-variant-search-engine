@@ -5,11 +5,11 @@ class DBHelper:
     def __init__(self):
         try:
             self.conn = mysql.connector.connect(
-                host=st.secrets["MYSQLHOST"],
-                port=st.secrets["MYSQLPORT"],
-                user=st.secrets["MYSQLUSER"],
-                password=st.secrets["MYSQLPASSWORD"],
-                database=st.secrets["MYSQLDATABASE"]
+                host=st.secrets["ballast.proxy.rlwy.net"],
+                port=st.secrets[27647],
+                user=st.secrets["root"],
+                password=st.secrets["VOGmvOGAFMxeEODxGQuBYaHsHORyYSIE"],
+                database=st.secrets["railway"]
             )
             self.cursor = self.conn.cursor()
         except Exception as e:
