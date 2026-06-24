@@ -1,14 +1,16 @@
 import mysql.connector
+import streamlit as st
 class DBHelper:
     def __init__(self):
         try:
-            self.conn=mysql.connector.connect(
-                host='localhost',
-                user='root',
-                password='',
-                database='genomic variant'
-                )
-            self.cursor=self.conn.cursor()
+          self.conn = mysql.connector.connect(
+                host=st.secrets["MYSQLHOST"],
+                port=st.secrets["MYSQLPORT"],
+                user=st.secrets["MYSQLUSER"],
+                password=st.secrets["MYSQLPASSWORD"],
+                database=st.secrets["MYSQLDATABASE"]
+            )
+          self.cursor=self.conn.cursor()
         except Exception as e:
             print(f"Connection error:{e}")
     def search_by_gene(self,gene_name):
