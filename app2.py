@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from sql import DBHelper
 st.set_page_config(
-    page_title='🧬VarSearch-Human Genetic Variant Explorer',
+    page_title='VarSearch-Human Genetic Variant Explorer',
     page_icon="🧬",
     layout='wide'
 )
@@ -57,7 +57,7 @@ div[data-testid="metric-container"] {
 </style>
 """, unsafe_allow_html=True)
 db=DBHelper()
-st.title("🧬Genomic Variant Search Engine")
+st.title("🧬VarSearch-Human Genetic Variant Explorer")
 st.markdown(" Search through 65,000+ real human genetic variants from ClinVar database")
 st.markdown("---")
 col1,col2=st.columns(2)
