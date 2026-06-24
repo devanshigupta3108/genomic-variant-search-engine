@@ -33,7 +33,7 @@ div[data-testid="metric-container"] {
 """, unsafe_allow_html=True)
 db=DBHelper()
 st.title("🧬Genomic Variant Search Engine")
-st.markdown("----------- Search through 65,000+ real human genetic variants from ClinVar database")
+st.markdown(" Search through 65,000+ real human genetic variants from ClinVar database")
 st.markdown("---")
 col1,col2=st.columns(2)
 with col1:
